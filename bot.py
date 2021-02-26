@@ -2,14 +2,14 @@
 import os
 
 import discord
-from dotenv import load_dotenv
+from dotenv import dotenv_values
 
 import startup
 import strings
 import random
 
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+temp = dotenv_values(".env")
+TOKEN = temp['DISCORD_TOKEN']
 
 client = discord.Client()
 
@@ -19,27 +19,31 @@ startup.loadData()
 async def on_ready():
     print(f'{client.user.name} has connected to Discord!')
 
-def handleMessage(message):
-    clean = message[1:]
+def handleMessage(text, message):
+    clean = text[1:]
 
     if '8ball' in clean:
         eList = startup.eight_ball_resps
-        return random.choice(eList)
+        return message.author.display_name + "  --  " + random.choice(eList)
     elif 'nlb' in clean:
         return "Fuck you Lloyd, the NLB isn't in D2.\n" \
            "Just play with the Dead Man's Tale you whiny bitch."
     elif 'command' in clean:
         return strings.cmds
+    elif 'fuck' in clean:
+        return 'HEY ' + message.author.display_name.upper() + '!  \n\n' \
+                'Stop being a potty mouth.  Watch it buster.'
     else:
-        return 'Check out this fuckin jokester trying to command me to do something that I don\'t wanna do. \n' \
-               'Type **!commands** for a list of the available commands'
+        return 'Check out ' + message.author.display_name + ' being a fuckin jokester, ' \
+                    'trying to make me to do something that I don\'t wanna do. \n' \
+                    'Type **!commands** for a list of the available commands'
 
 @client.event
 async def on_message(message):
     lower = message.content.lower()
     noSpace = lower.strip(' ')  # remove whitespaces
 
-    if '!' == noSpace[0]:
-        await message.channel.send(handleMessage(noSpace))
+    if len(noSpace) > 0 and ('!' == noSpace[0] or '!8ball' in noSpace):
+        await message.channel.send(handleMessage(noSpace, message))
 
 client.run(TOKEN)
