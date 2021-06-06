@@ -1,7 +1,9 @@
 eight_ball_resps = []
+tylVoiceLines = []
 
 def loadData():
     loadEightBall()
+    loadTylVoiceLines()
 
 
 def loadEightBall():
@@ -25,3 +27,27 @@ def loadEightBall():
     eight_ball_resps.append("My sources say no.")
     eight_ball_resps.append("Outlook not so good.")
     eight_ball_resps.append("Very doubtful.")
+
+
+def loadTylVoiceLines():
+    tylVoiceLines.append('./TylRegorVoiceLines/dielizardleechworm.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/firstyouthenlotus.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/funnyisntittenno.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/giveuntothevoidhowbout.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/hammertime.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/headfruit.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/Jealous,thatswhy.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/knewitlittlelizards.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/livedissection.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/mostintriguinglotus.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/nowherelefttohide.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/OldGrineer,life.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/poundyouintoacube.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/sickthingyouvedone.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/tennocomefightmem8.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/thelotusbarkingatyou.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/thintinskull.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/thisisforthetubemen.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/worthlessuglyfreaks.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/youhadmeanxious.mp3')
+    tylVoiceLines.append('./TylRegorVoiceLines/Youhatemescience.mp3')
