@@ -37,7 +37,7 @@ async def TylBehavior(message):
     audio_source = discord.FFmpegPCMAudio(executable='C:/Users/Lloyd/node_modules/ffmpeg-static/ffmpeg.exe', source=line)
 
     vc = await joinVoice(channel)
-    vc.play(audio_source, after=lambda x: print('Done'))
+    vc.play(audio_source)
     while vc.is_playing():
         await asyncio.sleep(1)
     await vc.disconnect()
