@@ -35,6 +35,8 @@ async def TylBehavior(message):
     channel = message.author.voice.channel
     line = random.choice(startup.tylVoiceLines)
     audio_source = discord.FFmpegPCMAudio(executable='C:/Users/Lloyd/node_modules/ffmpeg-static/ffmpeg.exe', source=line)
+    #audio_source = discord.FFmpegPCMAudio(executable='/home/pi/node_modules/ffmpeg-static/ffmpeg', source=line)
+
 
     vc = await joinVoice(channel)
     vc.play(audio_source)
