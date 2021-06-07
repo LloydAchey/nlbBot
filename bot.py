@@ -25,7 +25,7 @@ async def joinVoice(channel):
     vc = await channel.connect()
     return vc
 
-async def TylBehavior(message):
+async def TylBehavior(text, message):
     #Need author to be in a voice channel and bot to not already be playing
     if message.author.voice is None:
         return "You must be in a voice channel."
@@ -33,7 +33,13 @@ async def TylBehavior(message):
         return "I'm already playing."
 
     channel = message.author.voice.channel
-    line = random.choice(startup.tylVoiceLines)
+
+    if 'excite' in text:
+        line = './TylRegorVoiceLines/veryexcited.mp3'
+    else:
+        line = random.choice(startup.tylVoiceLines)
+
+
     audio_source = discord.FFmpegPCMAudio(executable='C:/Users/Lloyd/node_modules/ffmpeg-static/ffmpeg.exe', source=line)
     #audio_source = discord.FFmpegPCMAudio(executable='/home/pi/node_modules/ffmpeg-static/ffmpeg', source=line)
 
@@ -56,8 +62,8 @@ async def handleMessage(text, message):
     elif 'nlb' in clean:
         return "Fuck you Lloyd, the NLB isn't in D2.\n" \
            "Just play with the Dead Man's Tale you whiny bitch."
-    elif 'tyl' in clean or 'regor' in clean:
-        return await TylBehavior(message)
+    elif 'tyl' in clean or 'regor' in clean or 'excite' in clean:
+        return await TylBehavior(clean, message)
     elif 'command' in clean:
         return strings.cmds
     elif 'fuck' in clean:
