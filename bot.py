@@ -70,9 +70,7 @@ async def handleMessage(text, message):
         return 'HEY ' + message.author.display_name.upper() + '!  \n\n' \
                 'Stop being a potty mouth.  Watch it buster.'
     else:
-        return 'Check out ' + message.author.display_name + ' being a fuckin jokester, ' \
-                    'trying to make me to do something that I don\'t wanna do. \n' \
-                    'Type **!commands** for a list of the available commands'
+        return '-1'
 
 @client.event
 async def on_message(message):
@@ -80,6 +78,8 @@ async def on_message(message):
     noSpace = lower.strip(' ')  # remove whitespaces
 
     if len(noSpace) > 0 and ('!' == noSpace[0] or '!8ball' in noSpace):
-        await message.channel.send(await handleMessage(noSpace, message))
+        m = await handleMessage(noSpace, message)
+        if m != '-1':
+            await message.channel.send(await handleMessage(noSpace, message))
 
 client.run(TOKEN)
