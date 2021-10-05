@@ -8,6 +8,7 @@ import startup
 import strings
 import random
 import asyncio
+import trials
 
 
 temp = dotenv_values(".env")
@@ -69,6 +70,18 @@ async def handleMessage(text, message):
     elif 'fuck' in clean:
         return 'HEY ' + message.author.display_name.upper() + '!  \n\n' \
                 'Stop being a potty mouth.  Watch it buster.'
+    elif 'carry me' in clean:
+        if not trials.queued(message.author.display_name):
+            startup.trialsQ.append(message.author.display_name)
+            print(len(startup.trialsQ))
+            return message.author.display_name + ' was added to the trials queue'
+        return 'You\'re already in the Queue'
+    elif 'trials q' in clean:
+        return trials.printQ()
+    elif 'clear q' in clean:
+        startup.trialsQ.clear()
+        startup.trialsQ.append("Trials Order:")
+        return "trials list is cleared"
     else:
         return '-1'
 
@@ -81,5 +94,11 @@ async def on_message(message):
         m = await handleMessage(noSpace, message)
         if m != '-1':
             await message.channel.send(await handleMessage(noSpace, message))
+
+
+
+async def clearTrialsQ():
+    startup.trialsQ.clear()
+    startup.trialsQ.append("Trials Order:")
 
 client.run(TOKEN)

@@ -1,9 +1,11 @@
 eight_ball_resps = []
 tylVoiceLines = []
+trialsQ=[]
 
 def loadData():
     loadEightBall()
     loadTylVoiceLines()
+    trialsQ.append("Trials Order:")
 
 
 def loadEightBall():
